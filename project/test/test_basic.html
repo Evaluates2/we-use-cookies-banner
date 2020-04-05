@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>we-use-cookies-banner test</title>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+    <script src="../node_modules/wct-mocha/wct-mocha.js"></script>
+
+    <script type="module" src="../we-use-cookies-banner.js"></script>
+  </head>
+  <body>
+
+    <test-fixture id="we-use-cookies-banner-tester">
+      <template>
+        <we-use-cookies-banner></we-use-cookies-banner>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import '../node_modules/axe-core/axe.min.js';
+      import {axeReport} from '../node_modules/pwa-helpers/axe-report.js';
+
+      describe('we-use-cookies-banner', () => {
+        let should = chai.should();
+        let element;
+
+        beforeEach(function() {
+          element = fixture('we-use-cookies-banner-tester');
+        });
+
+        it('a11y', function() {
+          return axeReport(element);
+        });
+
+        it('This element has failing tests for you to correct!', () => {
+          element.prop1.should.equal('Extravagant but wrong or missing property value.');
+          const elementShadowRoot = element.shadowRoot;
+          const elementHeader = elementShadowRoot.querySelector('h2');
+          elementHeader.should.not.equal(null);
+        });
+
+      });
+    </script>
+
+  </body>
+</html>
